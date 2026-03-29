@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" = "main" ]; then
+  echo "You can't commit directly to main branch"
+  exit 1
+fi
+
+npm run lint-staged
+
+files=$(git diff --cached --name-only | grep -E '\.(js|jsx|ts|tsx|json|css|scss)$') || true
+
+if [ -z "$files" ]; then
+  echo "no files are staged."
+  exit 0
+fi
+
+npx prettier --write $files
+
+git add $files
