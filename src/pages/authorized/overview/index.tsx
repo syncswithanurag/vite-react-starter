@@ -35,18 +35,10 @@ export default function Overview() {
         <Typography variant='h4' fontWeight={700}>
           Vite React Starter
         </Typography>
-        <Typography variant='h6' color='text.secondary' maxWidth='700px'>
+        <Typography variant='h6' color='text.secondary'>
           A modern, production-ready React starter built with scalability, performance, and developer experience in
           mind.
         </Typography>
-
-        <Stack direction='row' spacing={1} mt={2}>
-          <Chip label='Vite' />
-          <Chip label='React 19' />
-          <Chip label='TypeScript' />
-          <Chip label='MUI' />
-          <Chip label='React Query' />
-        </Stack>
       </Stack>
 
       {/* FEATURES */}
@@ -110,7 +102,7 @@ export default function Overview() {
             'Husky + Lint-Staged'
           ].map((tech, i) => (
             <Grid key={i}>
-              <Chip label={tech} variant='outlined' />
+              <Chip label={tech} />
             </Grid>
           ))}
         </Grid>

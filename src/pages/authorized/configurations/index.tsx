@@ -9,7 +9,8 @@ import {
   Chip,
   Link,
   Paper,
-  Stack
+  Stack,
+  TableContainer
 } from '@mui/material';
 
 const packages = [
@@ -79,7 +80,7 @@ export default function Configurations() {
   return (
     <Box p={4}>
       {/* HEADER */}
-      <Stack spacing={2} mb={4}>
+      <Stack spacing={2} mb={3}>
         <Typography variant='h4' fontWeight={700}>
           Configurations
         </Typography>
@@ -90,60 +91,62 @@ export default function Configurations() {
       </Stack>
 
       {/* TABLE */}
-      <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
-        <Table>
-          <TableHead>
-            <TableRow sx={{ backgroundColor: 'grey.100' }}>
-              <TableCell>
-                <b>Package</b>
-              </TableCell>
-              <TableCell>
-                <b>Type</b>
-              </TableCell>
-              <TableCell>
-                <b>Why Used</b>
-              </TableCell>
-              <TableCell>
-                <b>Reference</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-            {packages.map((pkg, index) => (
-              <TableRow
-                key={index}
-                hover
-                sx={{
-                  '&:last-child td': { borderBottom: 0 }
-                }}>
-                <TableCell>
-                  <Typography fontWeight={500}>{pkg.name}</Typography>
+      <Paper sx={{ borderRadius: 0.5, overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 550 }}>
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: 'grey.100' }}>
+                <TableCell sx={{ backgroundColor: 'grey.100' }}>
+                  <b>Package</b>
                 </TableCell>
-
-                <TableCell>
-                  <Chip
-                    label={pkg.type === 'dev' ? 'Dev' : 'Dependency'}
-                    color={pkg.type === 'dev' ? 'warning' : 'primary'}
-                    size='small'
-                  />
+                <TableCell sx={{ backgroundColor: 'grey.100' }}>
+                  <b>Type</b>
                 </TableCell>
-
-                <TableCell>
-                  <Typography variant='body2' color='text.secondary'>
-                    {pkg.reason}
-                  </Typography>
+                <TableCell sx={{ backgroundColor: 'grey.100' }}>
+                  <b>Why Used</b>
                 </TableCell>
-
-                <TableCell>
-                  <Link href={pkg.link} target='_blank' underline='hover'>
-                    Docs
-                  </Link>
+                <TableCell sx={{ backgroundColor: 'grey.100' }}>
+                  <b>Reference</b>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+
+            <TableBody>
+              {packages.map((pkg, index) => (
+                <TableRow
+                  key={index}
+                  hover
+                  sx={{
+                    '&:last-child td': { borderBottom: 0 }
+                  }}>
+                  <TableCell>
+                    <Typography fontWeight={500}>{pkg.name}</Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Chip
+                      label={pkg.type === 'dev' ? 'Dev' : 'Dependency'}
+                      color={pkg.type === 'dev' ? 'warning' : 'primary'}
+                      size='small'
+                    />
+                  </TableCell>
+
+                  <TableCell>
+                    <Typography variant='body2' color='text.secondary'>
+                      {pkg.reason}
+                    </Typography>
+                  </TableCell>
+
+                  <TableCell>
+                    <Link href={pkg.link} target='_blank' underline='hover'>
+                      Docs
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </Box>
   );

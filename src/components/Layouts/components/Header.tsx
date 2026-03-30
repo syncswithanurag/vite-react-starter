@@ -20,7 +20,8 @@ const Header = ({ children }: any) => {
 
   return (
     <Box>
-      <AppBar position='static' elevation={2}>
+      {/* Fixed Header */}
+      <AppBar position='fixed' elevation={2}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           {/* Left Section */}
           <Stack direction='row' alignItems='center' gap={1.5}>
@@ -62,6 +63,11 @@ const Header = ({ children }: any) => {
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* Spacer to prevent content hiding behind fixed header */}
+      <Toolbar />
+
+      {/* Page Content */}
       {children}
     </Box>
   );
