@@ -1,14 +1,14 @@
-import { Box } from '@mui/material';
+import { Stack } from '@mui/material';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 
 export default function AppLayout({ children }: any) {
   return (
     <Header>
-      <Box>
+      <Stack direction='row'>
         <Sidebar />
         {children}
-      </Box>
+      </Stack>
     </Header>
   );
 }
