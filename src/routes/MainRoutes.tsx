@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
 import AuthRouter from './AuthRoutes';
-import Home from '../pages/authorized/home/Home';
 import * as urls from '../routes/config';
 import AppLayout from '../components/Layouts/AppLayout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PageNotFound from '../pages/public/others/PageNotFound';
 import PrivateRoute from '../components/AppGuards/PrivateRoute';
+import PlatformRouter from './PlatformRoutes';
+import Home from '../pages/authorized/home/Home';
 
 export default function MainRoutes() {
   return (
@@ -14,13 +15,15 @@ export default function MainRoutes() {
         {/* Auth Routes */}
         <Route path={`${urls.auth.base}/*`} element={<AuthRouter />} />
 
+        <Route index path='/' element={<PrivateRoute outlet={<Home />} />} />
         <Route
-          path='/'
+          index
+          path={`${urls.platform.base}/*`}
           element={
             <PrivateRoute
               outlet={
                 <AppLayout>
-                  <Home />
+                  <PlatformRouter />
                 </AppLayout>
               }
             />
