@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import { confirmDialog } from './helperFunctions';
+import axios, { type AxiosRequestConfig } from 'axios';
 import { BACKEND_URL } from 'env';
+import { confirmDialog } from './helperFunctions';
 
 export const client = axios.create({
   baseURL: BACKEND_URL
@@ -28,7 +28,6 @@ const _request = async (url: string, { method, data, params, headers = {} }: Axi
       data,
       params,
       headers: mergedHeaders,
-      withCredentials: !url.includes('/public')
     });
     return response?.data;
   } catch (error) {
